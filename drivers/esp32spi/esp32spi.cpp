@@ -982,14 +982,21 @@ namespace pimoroni {
     driver.send_param(&sock, 1, SpiDrv::NO_LAST_PARAM);
     driver.send_param(&protocol_mode, 1, SpiDrv::LAST_PARAM);
 
+    printf("[esp32:debug] deselect\n");
     driver.esp_deselect();
+
+    printf("[esp32:debug] wait select\n");
     driver.wait_for_esp_select();
+
+    printf("[esp32:debug] wait START_CLIENT_TCP\n");
 
     // Wait for reply
     uint8_t data = 0, data_len = 0;
     if(!driver.wait_response_cmd(START_CLIENT_TCP, SpiDrv::PARAM_NUMS_1, &data, &data_len)) {
       WARN("Response Err: START_CLIENT_TCP\n");
     }
+
+    printf("[esp32:debug] deselect\n");
     driver.esp_deselect();
   }
 
@@ -1005,14 +1012,21 @@ namespace pimoroni {
     driver.send_param(&protocol_mode, 1, SpiDrv::LAST_PARAM);
     driver.pad_to_multiple_of_4(17 + host.length());
 
+    printf("[esp32:debug] deselect\n");
     driver.esp_deselect();
+
+    printf("[esp32:debug] wait select\n");
     driver.wait_for_esp_select();
+
+    printf("[esp32:debug] wait START_CLIENT_TCP\n");
 
     // Wait for reply
     uint8_t data = 0, data_len = 0;
     if(!driver.wait_response_cmd(START_CLIENT_TCP, SpiDrv::PARAM_NUMS_1, &data, &data_len)) {
       WARN("Response Err: START_CLIENT_TCP\n");
     }
+
+    printf("[esp32:debug] deselect\n");
     driver.esp_deselect();  
   }
 
