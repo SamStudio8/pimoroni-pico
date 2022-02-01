@@ -52,14 +52,14 @@ namespace pimoroni {
   void SpiDrv::wait_for_esp_ack() {
     int timeout = BYTE_TIMEOUT;
     do{
-	tight_loop_contents()
+	tight_loop_contents();
     } while((timeout-- > 0) && !get_esp_ack());
   }
 
   void SpiDrv::wait_for_esp_ready() {
     int timeout = BYTE_TIMEOUT;
     do{
-	tight_loop_contents()
+	tight_loop_contents();
     } while((timeout-- > 0) && !get_esp_ready());
   }
 
