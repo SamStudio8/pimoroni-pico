@@ -50,15 +50,17 @@ namespace pimoroni {
   }
 
   void SpiDrv::wait_for_esp_ack() {
-	while(!get_esp_ack()) {
-      tight_loop_contents();
-    }
+    int timeout = BYTE_TIMEOUT;
+    do{
+	tight_loop_contents()
+    } while((timeout-- > 0) && !get_esp_ack());
   }
 
   void SpiDrv::wait_for_esp_ready() {
-    while(!get_esp_ready()) {
-      tight_loop_contents();
-    }
+    int timeout = BYTE_TIMEOUT;
+    do{
+	tight_loop_contents()
+    } while((timeout-- > 0) && !get_esp_ready());
   }
 
   void SpiDrv::wait_for_esp_select() {
